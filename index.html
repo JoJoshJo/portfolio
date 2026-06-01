@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Latevi Josue Lawson — Cybersecurity & Builder</title>
+<meta name="description" content="Latevi Josue Lawson — cybersecurity professional and builder. Selected work, live demo, and contact." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Instrument+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+/* =============================================================
+   Latevi Josue Lawson — portfolio
+   Aesthetic: dark, editorial-technical. "An engineer with taste."
+   Elegance first. Motion is felt, not flashy.
+   ============================================================= */
+
+:root {
+  --bg:        #0a0b0d;
+  --bg-soft:   #101216;
+  --bg-card:   #111419;
+  --line:      rgba(237, 234, 227, 0.10);
+  --line-soft: rgba(237, 234, 227, 0.06);
+  --ink:       #ece9e1;   /* warm off-white */
+  --ink-dim:   #9a9890;
+  --ink-faint: #5f5e58;
+  --accent:    #5fd08a;   /* refined signal green, used sparingly */
+  --amber:     #d8a657;   /* in-progress only */
+  --radius:    14px;
+  --maxw:      1180px;
+  --ease:      cubic-bezier(0.22, 1, 0.36, 1);
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body:    "Instrument Sans", system-ui, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  overflow-x: hidden;
+}
+
+/* faint grain + a slow radial glow behind everything for depth */
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(900px 600px at 75% -5%, rgba(95, 208, 138, 0.07), transparent 60%),
+    radial-gradient(700px 500px at 0% 100%, rgba(95, 208, 138, 0.04), transparent 55%);
+}
+
+::selection { background: rgba(95, 208, 138, 0.25); color: #fff; }
+
+a { color: inherit; text-decoration: none; }
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ---------- nav ---------- */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 32px;
+  backdrop-filter: blur(7px);
+  background: rgba(10, 11, 13, 0.55);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.4s var(--ease), background 0.4s var(--ease);
+}
+.nav.scrolled { border-bottom: 1px solid var(--line-soft); background: rgba(10, 11, 13, 0.8); }
+.nav .brand { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.12em; color: var(--ink); }
+.nav .brand b { color: var(--accent); font-weight: 400; }
+.nav .links { display: flex; gap: 28px; }
+.nav .links a {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--ink-dim);
+  transition: color 0.3s var(--ease); position: relative;
+}
+.nav .links a::after {
+  content: ""; position: absolute; left: 0; bottom: -5px; height: 1px; width: 0;
+  background: var(--accent); transition: width 0.4s var(--ease);
+}
+.nav .links a:hover { color: var(--ink); }
+.nav .links a:hover::after { width: 100%; }
+@media (max-width: 720px) { .nav .links { display: none; } }
+
+/* ---------- hero ---------- */
+.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+  padding-top: 110px; padding-bottom: 80px; position: relative; }
+.hero .eyebrow { margin-bottom: 28px; }
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(3rem, 9vw, 7.5rem);
+  line-height: 0.94;
+  letter-spacing: -0.025em;
+  margin-bottom: 30px;
+}
+.hero h1 .dot { color: var(--accent); }
+.hero .lede {
+  font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+  line-height: 1.5; max-width: 30ch; color: var(--ink);
+  font-weight: 400;
+}
+.hero .lede .em { color: var(--accent); }
+.hero .sub { margin-top: 22px; max-width: 52ch; color: var(--ink-dim); font-size: 1.02rem; }
+.hero .cue {
+  margin-top: 56px; display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ink-faint);
+}
+.hero .cue .bar { width: 46px; height: 1px; background: var(--ink-faint); position: relative; overflow: hidden; }
+.hero .cue .bar::after { content: ""; position: absolute; inset: 0; background: var(--accent);
+  transform: translateX(-100%); animation: sweep 2.6s var(--ease) infinite; }
+@keyframes sweep { 0% { transform: translateX(-100%); } 55%,100% { transform: translateX(100%); } }
+
+/* big faint parallax mark in the hero background */
+.hero .ghostmark {
+  position: absolute; right: -2%; top: 50%; transform: translateY(-50%);
+  font-family: var(--font-display); font-weight: 300; font-style: italic;
+  font-size: clamp(8rem, 26vw, 24rem); color: rgba(237,234,227,0.022);
+  line-height: 1; pointer-events: none; user-select: none; white-space: nowrap; z-index: 0;
+}
+
+/* ---------- section frame ---------- */
+.section { padding: 130px 0; position: relative; }
+.section-head { display: flex; align-items: baseline; gap: 20px; margin-bottom: 64px; }
+.section-head .idx { font-family: var(--font-mono); font-size: 12px; color: var(--accent); letter-spacing: 0.1em; }
+.section-head h2 {
+  font-family: var(--font-display); font-weight: 300;
+  font-size: clamp(2rem, 5vw, 3.4rem); letter-spacing: -0.02em; line-height: 1;
+}
+.section-head .line { flex: 1; height: 1px; background: var(--line); align-self: center; }
+
+/* ---------- live demo ---------- */
+.demo {
+  background: var(--bg-card); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 40px; position: relative; overflow: hidden;
+}
+.demo .demo-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; }
+@media (max-width: 820px) { .demo .demo-grid { grid-template-columns: 1fr; gap: 32px; } .demo { padding: 28px; } }
+.demo h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; margin-bottom: 10px; }
+.demo .demo-note { color: var(--ink-dim); font-size: 0.96rem; margin-bottom: 22px; line-height: 1.55; }
+.demo .samples { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.demo .samples button {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--ink-dim); background: transparent; border: 1px solid var(--line);
+  padding: 8px 14px; border-radius: 8px; cursor: pointer; transition: all 0.3s var(--ease);
+}
+.demo .samples button:hover { color: var(--ink); border-color: var(--accent); }
+.demo textarea {
+  width: 100%; min-height: 150px; resize: vertical; background: var(--bg); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px;
+  font-family: var(--font-mono); font-size: 13px; line-height: 1.6;
+  transition: border-color 0.3s var(--ease);
+}
+.demo textarea:focus { outline: none; border-color: var(--accent); }
+.demo .run {
+  margin-top: 14px; font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--bg); background: var(--accent); border: none;
+  padding: 13px 26px; border-radius: 9px; cursor: pointer; transition: transform 0.2s var(--ease), opacity 0.2s;
+}
+.demo .run:hover { transform: translateY(-1px); }
+.demo .run:active { transform: translateY(0); }
+.demo .run:disabled { opacity: 0.5; cursor: default; }
+
+/* result side */
+.result { display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; border-left: 1px solid var(--line); padding-left: 40px; }
+@media (max-width: 820px) { .result { border-left: none; border-top: 1px solid var(--line); padding-left: 0; padding-top: 32px; } }
+.result .ring { position: relative; width: 168px; height: 168px; }
+.result .ring svg { transform: rotate(-90deg); }
+.result .ring .score { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 300; font-size: 3.4rem; }
+.result .verdict { margin-top: 18px; font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.14em;
+  text-transform: uppercase; }
+.result .signals { margin-top: 18px; text-align: left; width: 100%; }
+.result .signals li { list-style: none; font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-dim);
+  padding: 5px 0; display: flex; gap: 9px; align-items: flex-start; opacity: 0; transform: translateY(6px); }
+.result .signals li.show { opacity: 1; transform: none; transition: all 0.5s var(--ease); }
+.result .signals li::before { content: "›"; color: var(--accent); }
+.result .idle { color: var(--ink-faint); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em;
+  text-transform: uppercase; }
+.result .scanning { color: var(--accent); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.18em;
+  text-transform: uppercase; }
+
+/* ---------- projects ---------- */
+.projects { display: flex; flex-direction: column; gap: 26px; }
+.card {
+  position: relative; background: var(--bg-card); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 36px 38px;
+  transition: border-color 0.5s var(--ease), transform 0.5s var(--ease), background 0.5s var(--ease);
+}
+.card:hover { border-color: rgba(95,208,138,0.4); transform: translateY(-3px); background: #12161b; }
+@media (max-width: 640px) { .card { padding: 26px 22px; } }
+
+.card .card-top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.card .titles { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+.card h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+  letter-spacing: -0.015em; line-height: 1; }
+.card .kicker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-faint); }
+
+.tag { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-dim);
+  border: 1px solid var(--line); padding: 6px 12px; border-radius: 30px; white-space: nowrap; }
+.tag .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ink-faint); }
+.tag.live .dot { background: var(--accent); box-shadow: 0 0 0 3px rgba(95,208,138,0.18); }
+.tag.live { color: var(--accent); border-color: rgba(95,208,138,0.3); }
+.tag.progress .dot { background: var(--amber); }
+.tag.progress { color: var(--amber); border-color: rgba(216,166,87,0.3); }
+
+.card .tagline { margin-top: 18px; font-size: 1.14rem; line-height: 1.5; max-width: 62ch; color: var(--ink); }
+
+/* the "revealing the hidden" signature — highlight starts redacted, decrypts on view */
+.card .highlight {
+  margin-top: 16px; max-width: 70ch; color: var(--ink-dim); line-height: 1.6; font-size: 1rem;
+  filter: blur(7px); opacity: 0.35; transition: filter 0.6s var(--ease), opacity 0.6s var(--ease);
+}
+.card.revealed .highlight { filter: blur(0); opacity: 1; }
+
+.card .meta { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 8px; }
+.card .chip { font-family: var(--font-mono); font-size: 11px; color: var(--ink-dim);
+  border: 1px solid var(--line-soft); padding: 5px 10px; border-radius: 7px; background: rgba(255,255,255,0.012); }
+.card .role { margin-top: 20px; color: var(--ink-faint); font-size: 0.92rem; line-height: 1.55; max-width: 70ch; }
+.card .card-note { margin-top: 14px; font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint);
+  border-left: 2px solid var(--line); padding-left: 12px; }
+.card .links { margin-top: 22px; display: flex; gap: 22px; flex-wrap: wrap; }
+.card .links a { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--ink); display: inline-flex; align-items: center; gap: 7px; position: relative; }
+.card .links a .arrow { color: var(--accent); transition: transform 0.3s var(--ease); }
+.card .links a:hover .arrow { transform: translate(3px, -3px); }
+.card .links a::after { content: ""; position: absolute; left: 0; bottom: -4px; height: 1px; width: 0;
+  background: var(--accent); transition: width 0.4s var(--ease); }
+.card .links a:hover::after { width: 100%; }
+
+/* ---------- about ---------- */
+.about-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 60px; }
+@media (max-width: 820px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } }
+.about p { font-size: 1.18rem; line-height: 1.66; color: var(--ink); margin-bottom: 20px; max-width: 56ch; }
+.about p .em { color: var(--accent); }
+.facts { border-top: 1px solid var(--line); }
+.facts .row { display: flex; justify-content: space-between; gap: 20px; padding: 16px 0;
+  border-bottom: 1px solid var(--line-soft); }
+.facts .k { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-faint); }
+.facts .v { font-size: 0.98rem; color: var(--ink); text-align: right; }
+
+/* ---------- contact ---------- */
+.contact { text-align: center; padding: 150px 0 120px; }
+.contact .mono { display: block; margin-bottom: 26px; }
+.contact h2 { font-family: var(--font-display); font-weight: 300; font-size: clamp(2.4rem, 7vw, 5rem);
+  letter-spacing: -0.025em; line-height: 1; margin-bottom: 14px; }
+.contact .mail { display: inline-block; margin-top: 14px; font-family: var(--font-display); font-style: italic;
+  font-weight: 300; font-size: clamp(1.4rem, 4vw, 2.4rem); color: var(--accent); position: relative; }
+.contact .mail::after { content: ""; position: absolute; left: 0; bottom: 2px; height: 1px; width: 0;
+  background: var(--accent); transition: width 0.5s var(--ease); }
+.contact .mail:hover::after { width: 100%; }
+.contact .socials { margin-top: 44px; display: flex; justify-content: center; gap: 34px; }
+.contact .socials a { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-dim); transition: color 0.3s var(--ease); }
+.contact .socials a:hover { color: var(--accent); }
+
+footer { border-top: 1px solid var(--line-soft); padding: 34px 0; }
+footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--ink-faint); }
+
+/* ---------- entrance animation hooks (set by JS) ---------- */
+.reveal { opacity: 0; transform: translateY(26px); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .card .highlight { filter: none !important; opacity: 1 !important; }
+}
+
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="brand" href="#top">LJL<b>.</b></a>
+  <div class="links">
+    <a href="#work">Work</a>
+    <a href="#demo">Live demo</a>
+    <a href="#about">Profile</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="ghostmark">detect.</div>
+  <div class="wrap">
+    <div class="eyebrow mono" data-hero>Cybersecurity professional · Builder</div>
+    <h1 data-hero>Latevi Josue<br />Lawson<span class="dot">.</span></h1>
+    <p class="lede" data-hero>I <span class="em">secure systems</span> — and build the products that run on them.</p>
+    <p class="sub" data-hero>Five years across IT and security operations, and eight products shipped or in build. I treat privacy and security as the way you build, not a feature you bolt on.</p>
+    <div class="cue" data-hero><span class="bar"></span>Scroll to see how I think</div>
+  </div>
+</header>
+
+<!-- 01 · LIVE DEMO -->
+<section class="section" id="demo">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="idx">01</span>
+      <h2>See how I think</h2>
+      <span class="line"></span>
+    </div>
+    <div class="demo reveal">
+      <div class="demo-grid">
+        <div>
+          <h3>Is this job real?</h3>
+          <p class="demo-note">Paste a job posting — or load an example — and watch it scored 0–100 for legitimacy. This is a live taste of GhostCheck's logic, running entirely in your browser.</p>
+          <div class="samples">
+            <button data-sample="scam">Load a scam posting</button>
+            <button data-sample="legit">Load a real posting</button>
+          </div>
+          <textarea id="job-input" placeholder="Paste a job description here…"></textarea>
+          <button class="run" id="run-btn">Analyze posting</button>
+        </div>
+        <div class="result">
+          <div class="ring">
+            <svg width="168" height="168" viewBox="0 0 168 168">
+              <circle cx="84" cy="84" r="76" fill="none" stroke="var(--line)" stroke-width="3" />
+              <circle id="ring-fg" cx="84" cy="84" r="76" fill="none" stroke="var(--ink-faint)" stroke-width="3"
+                stroke-linecap="round" stroke-dasharray="477.5" stroke-dashoffset="477.5"
+                style="transition: stroke-dashoffset 1.1s cubic-bezier(.22,1,.36,1), stroke 0.6s ease;" />
+            </svg>
+            <div class="score" id="score-num" style="color: var(--ink-faint);">—</div>
+          </div>
+          <div class="verdict" id="verdict"><span class="idle" id="result-status">Awaiting input</span></div>
+          <ul class="signals" id="signals"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 · WORK -->
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="idx">02</span>
+      <h2>Selected work</h2>
+      <span class="line"></span>
+    </div>
+    <div class="projects" id="projects"></div>
+  </div>
+</section>
+
+<!-- 03 · PROFILE -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="idx">03</span>
+      <h2>Profile</h2>
+      <span class="line"></span>
+    </div>
+    <div class="about-grid">
+      <div class="about reveal">
+        <p>I'm a cybersecurity and IT professional who builds. By day I run support and security operations — keeping systems at <span class="em">99.9% uptime</span>, hardening access, and resolving incidents fast.</p>
+        <p>By night I ship products: real-time platforms, AI pipelines, agent infrastructure, and mobile apps — most of them solo, end to end. The thread through all of it is the same instinct I bring to security work: <span class="em">build it so it can be trusted</span>.</p>
+      </div>
+      <div class="facts reveal">
+        <div class="row"><span class="k">Based</span><span class="v">Atlanta, GA</span></div>
+        <div class="row"><span class="k">Education</span><span class="v">B.S. Information Technology, Clayton State (in progress) · A.S. Cybersecurity</span></div>
+        <div class="row"><span class="k">Certifications</span><span class="v">CompTIA Security+ · Google IT &amp; Cybersecurity</span></div>
+        <div class="row"><span class="k">Focus</span><span class="v">Security operations · Privacy-first architecture · AI systems</span></div>
+        <div class="row"><span class="k">Languages</span><span class="v">English · French (native)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 · CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap reveal">
+    <span class="mono">04 — Get in touch</span>
+    <h2>Let's build something<br />worth trusting.</h2>
+    <a class="mail" href="mailto:lawsonjosh213@gmail.com">lawsonjosh213@gmail.com</a>
+    <div class="socials">
+      <a href="https://github.com/JoJoshJo" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/josue-lawson/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:lawsonjosh213@gmail.com">Email</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Latevi Josue Lawson</span>
+    <span>Built from scratch · Atlanta</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script>
+/* =============================================================
+   PROJECTS  —  THE ONLY FILE YOU EDIT TO ADD / CHANGE WORK
+   -------------------------------------------------------------
+   To add a project: copy one { } block, paste it, fill the fields.
+   Order here = order on the page. Set  featured: true  to surface
+   it near the top. Everything else (cards, tags, layout) is automatic.
+
+   status options (controls the tag colour):
+     "Live"         -> green   (shipped & running)
+     "In progress"  -> amber
+     "Concept"      -> neutral
+     "Research"     -> neutral (evaluations / lab work)
+   link: either null, a single "https://..." string,
+         or an array of { label, url } objects.
+   ============================================================= */
+
+const PROJECTS = [
+  {
+    name: "AgentBridge",
+    status: "Live",
+    kicker: "Frontier",
+    tagline:
+      "A coordination layer that lets AI agents — Claude and Antigravity — talk to each other and run tasks with no human in the loop.",
+    highlight:
+      "First known implementation wiring Claude Desktop directly to Antigravity. The full agent-to-agent loop — task spec → Supabase webhook → headless CLI trigger → result read back — completes in 35 seconds with zero human input. A multi-agent router supports Antigravity, Lovable, Cursor and Windsurf.",
+    stack: ["Python", "FastAPI", "Supabase", "MCP", "Antigravity CLI", "Next.js", "TypeScript", "Tailwind", "Vercel"],
+    role: "Sole builder — architecture, both MCP servers, webhook router, Supabase schema, Claude Desktop integration, Next.js dashboard.",
+    link: [
+      { label: "Core repo", url: "https://github.com/JoJoshJo/agentbridge" },
+      { label: "UI repo", url: "https://github.com/JoJoshJo/agentbridge-ui" }
+    ],
+    featured: true
+  },
+  {
+    name: "VyloNest",
+    status: "Live",
+    kicker: "Shipped solo",
+    tagline:
+      "A real-time student community platform for Clayton State University — posts, messaging, AI campus search and multiplayer games.",
+    highlight:
+      "Built solo in one semester. Row-Level Security on every table, a five-layer architecture, and a compliance response deployed in 48 hours while the app stayed live. Static analysis caught 15 bugs before any user ever hit them.",
+    stack: ["React", "TypeScript", "Vite", "Supabase", "Deno", "Claude", "Gemini 2.5 Flash", "Firecrawl"],
+    role: "Solo developer — product architecture, code review, security audit, compliance response, deployment.",
+    link: "https://vylonest.com",
+    featured: true
+  },
+  {
+    name: "Turf & Ardor",
+    status: "Live",
+    kicker: "Zero to App Store",
+    tagline:
+      "A social-discovery and dating app for football fans heading to The Tournament 2026 — fan matching, tailgates, rideshares and city guides.",
+    highlight:
+      "Took it from zero to App Store approval in under seven weeks across five submission cycles — clearing every Apple rejection (native Google Sign-In compliance, iPad rendering, privacy manifests, metadata accuracy) while shipping a single Flutter codebase to both iOS and Android.",
+    stack: ["Flutter", "Dart", "Supabase", "Google Sign-In", "Sign in with Apple", "Xcode Cloud", "Vercel", "Resend"],
+    role: "Solo founder — designed, built and shipped end to end: Flutter app, Supabase backend, website, App Store submission strategy, post-launch fixes.",
+    link: [
+      { label: "App Store", url: "https://apps.apple.com/us/app/turf-ardor/id6763736656" },
+      { label: "Website", url: "https://turfandardor.com/" }
+    ],
+    featured: true
+  },
+  {
+    name: "GhostCheck",
+    status: "Concept",
+    kicker: "Systems architecture",
+    tagline:
+      "A Chrome extension + site that scores any job posting 0–100 for legitimacy in under two seconds — catching ghost jobs and scams before you apply.",
+    highlight:
+      "A multi-source training pipeline — Reddit, FTC / BBB scam databases, LinkedIn headcount deltas and crowdsourced feedback — retrains the scoring model on an automated weekly cron, targeting 90%+ accuracy by month six.",
+    stack: ["Python", "FastAPI", "Celery", "Redis", "PostgreSQL", "React", "Plasmo (MV3)", "Supabase", "Claude API", "spaCy", "scikit-learn", "Apify"],
+    role: "Solo founder — product, full system architecture, data pipeline & AI training strategy, extension UX, CI/CD.",
+    link: null,
+    featured: true
+  },
+  {
+    name: "BOND",
+    status: "In progress",
+    kicker: "Founder-grade product",
+    tagline:
+      "A mobile couples app built around one shared identity instead of two linked accounts — private messaging, live games, AI daily prompts and a shared memory vault.",
+    highlight:
+      "The AI layer learns each couple's humour and love languages over time. Architected to run under $0.12 per couple per month against a $7.99 subscription — roughly 98% gross margin on AI cost.",
+    stack: ["Flutter", "Supabase", "Claude API", "Firebase Cloud Messaging", "RevenueCat", "Deno"],
+    role: "Sole founder — product strategy, system architecture, schema design, AI integration, iOS + Android development.",
+    link: null
+  },
+  {
+    name: "FindMCar",
+    status: "Live",
+    kicker: "Privacy-first",
+    tagline:
+      "A parking app that remembers where you parked and walks you back — with zero backend and zero server.",
+    highlight:
+      "Local-only storage means location data never leaves the device. Now engineering true background auto-detect, using a speed threshold plus GPS stillness to save parking automatically even when the app is fully closed.",
+    stack: ["React", "TypeScript", "Tailwind", "Vite", "Capacitor", "Leaflet / OpenStreetMap", "PWA / Workbox"],
+    role: "Solo — product concept, full-stack design, security architecture, PWA / mobile configuration.",
+    link: "https://find-m-car.lovable.app"
+  },
+  {
+    name: "DECEIVE — honeypot evaluation",
+    status: "Research",
+    kicker: "Security evaluation",
+    tagline:
+      "A lab evaluation of Splunk's DECEIVE — an open-source honeypot that uses an LLM to simulate a Linux SSH server and classify each attacker session as benign, suspicious or malicious.",
+    highlight:
+      "Tests DECEIVE's “LLM-as-the-system” design: session-state consistency and whether the AI's threat verdicts match scripted benign, recon and malicious sessions. Evaluation underway — results pending.",
+    stack: ["Python", "SSH", "LLM backend", "Isolated lab VM"],
+    role: "Designed and ran the evaluation — test-case design, isolated lab deployment, written report. Did not author DECEIVE itself.",
+    note: "Evaluation of an open-source tool by Splunk SURGe — not my build.",
+    link: [{ label: "Tool source", url: "https://github.com/splunk/DECEIVE" }]
+  },
+  {
+    name: "Azure SOC + Honeynet",
+    status: "Research",
+    kicker: "Detection lab",
+    tagline:
+      "An Azure SOC + honeynet lab: a PowerShell pipeline pulls failed-RDP attacks from Windows Event Logs, enriches them with IP geolocation, and feeds a live honeypot VM into Azure Sentinel.",
+    highlight:
+      "Built the detection pipeline end to end — log extraction, IP-geolocation enrichment, and Sentinel correlation against a live honeypot VM capturing real attack traffic.",
+    stack: ["Azure Sentinel", "PowerShell", "Windows Event Logs", "IP Geolocation API", "Azure VM"],
+    role: "Built the SOC pipeline, configured Sentinel SIEM, deployed and monitored the honeypot.",
+    link: null
+  }
+];
+
+if (typeof module !== "undefined") module.exports = PROJECTS;
+
+</script>
+<script>
+/* =============================================================
+   main.js — renders projects, drives motion, runs the live demo
+   ============================================================= */
+
+/* ---------- 1. render projects from the data file ---------- */
+function statusMeta(status) {
+  if (status === "Live") return { cls: "live", label: "Live" };
+  if (status === "In progress") return { cls: "progress", label: "In progress" };
+  return { cls: "neutral", label: status };
+}
+
+function renderLinks(link) {
+  if (!link) return "";
+  const items = typeof link === "string" ? [{ label: "Visit", url: link }] : link;
+  const a = items
+    .map(
+      (l) =>
+        `<a href="${l.url}" target="_blank" rel="noopener">${l.label}<span class="arrow">↗</span></a>`
+    )
+    .join("");
+  return `<div class="links">${a}</div>`;
+}
+
+function renderProjects() {
+  const host = document.getElementById("projects");
+  if (!host) return;
+  host.innerHTML = PROJECTS.map((p) => {
+    const s = statusMeta(p.status);
+    const chips = p.stack.map((t) => `<span class="chip">${t}</span>`).join("");
+    const note = p.note ? `<div class="card-note">${p.note}</div>` : "";
+    return `
+      <article class="card reveal">
+        <div class="card-top">
+          <div class="titles">
+            <h3>${p.name}</h3>
+            <span class="kicker">${p.kicker || ""}</span>
+          </div>
+          <span class="tag ${s.cls}"><span class="dot"></span>${s.label}</span>
+        </div>
+        <p class="tagline">${p.tagline}</p>
+        <p class="highlight">${p.highlight}</p>
+        ${note}
+        <div class="meta">${chips}</div>
+        <p class="role">${p.role}</p>
+        ${renderLinks(p.link)}
+      </article>`;
+  }).join("");
+}
+
+/* ---------- 2. motion: Lenis smooth-scroll + GSAP reveals/parallax ---------- */
+function setupMotion() {
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const hasGSAP = typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined";
+
+  // smooth scroll
+  if (typeof Lenis !== "undefined" && !reduce) {
+    const lenis = new Lenis({ lerp: 0.14, wheelMultiplier: 1.05, touchMultiplier: 1.6 });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+    if (hasGSAP) lenis.on("scroll", ScrollTrigger.update);
+    document.querySelectorAll('a[href^="#"]').forEach((a) =>
+      a.addEventListener("click", (e) => {
+        const t = document.querySelector(a.getAttribute("href"));
+        if (t) { e.preventDefault(); lenis.scrollTo(t, { offset: -10 }); }
+      })
+    );
+  }
+
+  if (reduce) {
+    document.querySelectorAll(".reveal").forEach((el) => el.classList.remove("reveal"));
+    document.querySelectorAll(".card").forEach((el) => el.classList.add("revealed"));
+    return;
+  }
+
+  if (hasGSAP) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // hero entrance
+    gsap.set("[data-hero]", { opacity: 0, y: 24 });
+    gsap.to("[data-hero]", { opacity: 1, y: 0, duration: 0.8, ease: "power2.out", stagger: 0.07, delay: 0.05 });
+
+    // generic scroll reveals
+    gsap.utils.toArray(".reveal").forEach((el) => {
+      gsap.to(el, {
+        opacity: 1, y: 0, duration: 0.65, ease: "power2.out",
+        scrollTrigger: { trigger: el, start: "top 94%" }
+      });
+    });
+
+    // card highlight "decrypt"
+    gsap.utils.toArray(".card").forEach((card) => {
+      ScrollTrigger.create({
+        trigger: card, start: "top 88%",
+        onEnter: () => card.classList.add("revealed")
+      });
+    });
+
+    // subtle parallax on the hero ghost-mark
+    gsap.to(".ghostmark", {
+      yPercent: 18, ease: "none",
+      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true }
+    });
+  } else {
+    // fallback: IntersectionObserver
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.style.transition = "opacity 0.65s cubic-bezier(.22,1,.36,1), transform 0.65s cubic-bezier(.22,1,.36,1)";
+          e.target.style.opacity = "1";
+          e.target.style.transform = "none";
+          if (e.target.classList.contains("card")) e.target.classList.add("revealed");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll(".reveal, .card").forEach((el) => io.observe(el));
+    document.querySelectorAll("[data-hero]").forEach((el) => { el.style.opacity = "1"; el.style.transform = "none"; });
+  }
+}
+
+/* ---------- 3. nav scrolled state ---------- */
+function setupNav() {
+  const nav = document.querySelector(".nav");
+  const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 40);
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+}
+
+/* =============================================================
+   4. LIVE DEMO
+   -------------------------------------------------------------
+   analyzeJob() is a self-contained heuristic stand-in so the demo
+   never breaks in front of a recruiter. To wire up the real
+   GhostCheck engine later, replace the BODY of analyzeJob with a
+   fetch() to your API and return { score, signals }.
+   ============================================================= */
+const SAMPLES = {
+  scam: `URGENT HIRING!!! Work-from-home Data Entry — earn $4,500/week, NO experience needed!
+We are actively recruiting immediately. Flexible hours, unlimited earning potential!
+To start, contact us on Telegram and complete a small $50 registration/training fee.
+Payment sent via wire transfer or gift card. Provide your bank details to receive your first check.`,
+  legit: `Backend Engineer (Python) — Acme Logistics, Atlanta, GA (Hybrid)
+Salary range: $115,000–$140,000 + equity. Health, dental, 401(k) match.
+You'll join a 6-person platform team building our shipment-tracking API.
+Requirements: 3+ years Python, FastAPI or Django, PostgreSQL, AWS. CI/CD experience a plus.
+Posted 2 days ago by the Hiring Manager. Interviews: recruiter screen, technical, team.`
+};
+
+function analyzeJob(text) {
+  const t = (text || "").toLowerCase();
+  let score = 72;
+  const signals = [];
+
+  const red = [
+    [/no experience (needed|required)/, 14, "“No experience needed” — classic scam bait"],
+    [/(wire transfer|western union|gift card)/, 22, "Asks for wire transfer / gift card payment"],
+    [/(registration|training) fee/, 20, "Requests an upfront fee to start"],
+    [/(telegram|whatsapp|personal email)/, 16, "Pushes contact to Telegram / WhatsApp"],
+    [/(bank details|ssn|social security)/, 18, "Requests bank details / SSN early"],
+    [/unlimited earning|\$\$\$|\d[\d,]*\s*\/?\s*week/, 12, "Inflated or vague pay claims"],
+    [/urgent|immediately|act now/, 8, "Manufactured urgency"],
+    [/actively recruiting|always hiring/, 7, "“Always hiring” language — possible ghost post"],
+  ];
+  const green = [
+    [/\$\d[\d,]*\s*[–-]\s*\$?\d[\d,]*/, 10, "Posts a concrete salary range"],
+    [/(401\(k\)|benefits|equity|health|dental)/, 6, "Names real benefits"],
+    [/(fastapi|django|postgres|aws|react|kubernetes|python|typescript)/, 6, "Specific, verifiable tech stack"],
+    [/posted .* days? ago/, 5, "Clear, recent posting date"],
+    [/(requirements|responsibilities|you'?ll)/, 5, "Structured role description"],
+  ];
+
+  red.forEach(([re, w, msg]) => { if (re.test(t)) { score -= w; signals.push(msg); } });
+  green.forEach(([re, w, msg]) => { if (re.test(t)) { score += w; signals.push("+ " + msg); } });
+  if (t.trim().length < 40) { score = 50; signals.length = 0; signals.push("Not enough detail to judge"); }
+
+  score = Math.max(2, Math.min(98, Math.round(score)));
+  return { score, signals: signals.slice(0, 6) };
+}
+
+function bandFor(score) {
+  if (score >= 70) return { color: "var(--accent)", label: "Likely legitimate" };
+  if (score >= 40) return { color: "var(--amber)", label: "Suspicious — verify" };
+  return { color: "#e2645f", label: "Likely ghost / scam" };
+}
+
+function runDemo() {
+  const ta = document.getElementById("job-input");
+  const btn = document.getElementById("run-btn");
+  const ring = document.getElementById("ring-fg");
+  const scoreEl = document.getElementById("score-num");
+  const verdictEl = document.getElementById("verdict");
+  const signalsEl = document.getElementById("signals");
+  const statusEl = document.getElementById("result-status");
+
+  const text = ta.value;
+  if (!text.trim()) { ta.focus(); return; }
+
+  const { score, signals } = analyzeJob(text);
+  const band = bandFor(score);
+  const C = 477.5;
+
+  btn.disabled = true;
+  signalsEl.innerHTML = "";
+  statusEl.textContent = "scanning…";
+  statusEl.className = "scanning";
+  scoreEl.textContent = "—";
+  scoreEl.style.color = "var(--ink)";
+  ring.style.stroke = "var(--ink-faint)";
+  ring.style.strokeDashoffset = C;
+
+  // brief "analysis" beat, then resolve
+  setTimeout(() => {
+    statusEl.textContent = "";
+    ring.style.stroke = band.color;
+    ring.style.strokeDashoffset = C * (1 - score / 100);
+    scoreEl.style.color = band.color;
+    verdictEl.textContent = band.label;
+    verdictEl.style.color = band.color;
+
+    // count the number up
+    let n = 0;
+    const step = Math.max(1, Math.round(score / 20));
+    const tick = setInterval(() => {
+      n += step;
+      if (n >= score) { n = score; clearInterval(tick); }
+      scoreEl.textContent = n;
+    }, 22);
+
+    // stagger the signal lines in
+    signals.forEach((sig, i) => {
+      const li = document.createElement("li");
+      li.textContent = sig;
+      signalsEl.appendChild(li);
+      setTimeout(() => li.classList.add("show"), 180 + i * 90);
+    });
+
+    btn.disabled = false;
+  }, 520);
+}
+
+function setupDemo() {
+  const btn = document.getElementById("run-btn");
+  if (btn) btn.addEventListener("click", runDemo);
+  document.querySelectorAll("[data-sample]").forEach((b) =>
+    b.addEventListener("click", () => {
+      document.getElementById("job-input").value = SAMPLES[b.dataset.sample];
+    })
+  );
+}
+
+/* ---------- boot ---------- */
+document.addEventListener("DOMContentLoaded", () => {
+  renderProjects();
+  setupNav();
+  setupDemo();
+  setupMotion();
+  const y = document.getElementById("year");
+  if (y) y.textContent = new Date().getFullYear();
+});
+
+</script>
+</body>
+</html>
